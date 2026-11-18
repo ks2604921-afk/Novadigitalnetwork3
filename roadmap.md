@@ -1,0 +1,62 @@
+# Tasks
+- [x] Add Profile box fits small screens (title + close visible), endless avatar slider centred on the chosen avatar; Clime Clip/Meme boxes in JioHotstar/TADKA style (verified at 639x520).
+- [x] Same avatar look on profile selection and Profile page, equal-size avatar slider; Clips renamed Clime with square Clip (left) / Meme (right) options (verified at 639px).
+- [x] Profile page edit mode: pencil + delete below every profile; one shared avatar slider for new/edit profile in both places; premium Clips page (verified at 639px; 8 profile-rule tests pass).
+- [x] Latest addition: pencil/delete below every profile in edit mode; keep avatar selection as the same horizontal slide in both places.
+- [ ] Saved Watchlist label below plus; same language questions for profile create/edit in both places.
+- [ ] Premium playable Clips and Coming Soon trailers/reminders connected to admin publishing.
+- [ ] Complete latest request: admin Clips/Coming Soon publishing and direct browser push without Firebase.
+- [x] Create requested admin account and grant admin role; authenticated panel and Banners verified. Round Watchlist plus and Avatar label verified.
+- [ ] Confirm admin email before normal password sign-in — waiting for user to follow the confirmation email.
+- [x] Reveal OVA from the intro N, keep footer and pill logout on Settings & Help only, and order profiles between first and Kids in both views.
+- [ ] Premium mobile-number login before profile selection, with PC/TV-only keypad; real SMS delivery needs a connected provider.
+- [ ] Account-saved profile names/avatars; Add form, per-profile Delete and pencil editing.
+- [x] Latest title correction: film/series name above Watchlist/Download/Share/Rate, with a short illustrative hook beneath the name and related shows below the actions. Mobile and desktop verified; 26 focused tests passed.
+- [x] Animate Ask ChatGPT and its prompt input; compact video actions with heart Rate, centered title, Hotstar-style seek controls, and playable related movies/series. Verified at 393×577 and desktop; 26 focused tests passed. Related titles use the uploaded sample and illustrative preview artwork.
+- [x] ChatGPT replies work (live reply verified after move to new Lovable Cloud).
+- [x] Redesign sample playback: top-aligned video, Home-only category pill, Watchlist/Download/Share/Rate and title below, touch-revealed controls. Playback, seek, speed, fullscreen, download, sharing and device-local saves verified; local browser test replayed the actual platform-hosted sample because Vite does not serve the asset proxy.
+- [x] Remix setup: update INGEST_API_KEY through the secure secret form.
+- [x] Remix setup: update NOVA12 through the secure secret form.
+- [x] Remix setup: verify copied Drizzle migrations are cleared and the empty migration scaffold is present.
+- [ ] Wire CineStream catalog into Home — blocked: CMS link returns a Google cookie-check page instead of public JSON.
+- [x] Category pill restored with only its "Categories" word removed; TV/Series/Sports pills, the ^ arrow and its all-categories page are live.
+- [x] Desktop side rail: no arrow button and no "Collapse" label; it opens automatically on mouse hover and closes when the mouse leaves; Categories and Profile pinned at the bottom (verified at 1280px).
+- [x] Side rail: outer panel border, top shine line and the divider above Categories/Profile removed (verified at 1280px).
+
+- [x] Remove login/signup and startup intro from app entry (superseded: sample login and new intro added later).
+- [ ] (Needs your confirmation of which options) Keep Account separate and expand the remaining Settings & Help options inline; verify interactions.
+- [x] Insert additional profiles between the first profile and Kids.
+- [x] Change ₹1 trial to one month and verify the offer.
+- [x] AutoPay section removed from Profile at user's request.
+- [x] Next-bill card background set to app black; home banner sized per spec (mobile 280×420 rounded-2xl, tablet 640×400 rounded-3xl, desktop 860×480 rounded-[32px]) and verified at three viewports.
+- [x] Build explicit ₹40/month post-trial consent and honest payment/mandate status; actual activation remains blocked by payment provider setup.
+- [x] Center Privacy Policy footer, remove its top divider, and show version underneath.
+- [x] Remove Privacy from Settings & Help.
+- [x] Refine Help & Support presentation.
+- [x] Open a four-digit PIN keypad immediately when parental controls are switched on.
+- [x] Verify settings and PIN entry.- [x] Move phone OTP + PIN sign-in to Lovable Cloud.
+- [x] Cinematic startup intro with existing NOVA logo (fresh launch only, fallback).
+- [x] Global brand colours (#080D1B, #11182B, #6655FF, #00CFFF, #FFFFFF, #A8B0C5) with transitions.
+- [x] Remove PIN step from sign-in; OTP verification now starts the session directly (verified end-to-end).
+- [x] App-level error boundary with Try again / Reload recovery on the main page.
+- [x] Real SMS sign-in request superseded by removal of login/signup; no provider setup required for current app entry.
+- [x] AI mood/genre recommendations on Search page via Lovable AI Gateway (live call verified).
+- [x] AI button: plain pill, normal colours, no idle animation, further from category pill.
+- [x] Home category pill: "More" option after Sports opening All Categories, and the nav-bar white glow + underline highlight reused for the selected pill option (one highlight at a time).
+- [x] AI assistant rebranded to ChatGPT: knot mark instead of the NOVA AI image, and the "AI" label replaced with "ChatGPT" (button, chat header, greeting and input hint verified in preview).
+
+- [x] Admin panel: dark theme (form labels visible), Banners tab, Seasons & Episodes button on web series.
+
+- [x] Video storage architecture: provider-independent adapter, media tables, Upload Center, Episode Manager, Media Library, Storage Settings in admin (real uploads blocked until a storage provider is chosen and connected).
+- [ ] Connect a real video storage provider — blocked: provider not chosen yet; needs its adapter built and its secrets added.
+- [x] Geometric faceted-N startup intro before login, with Skip (verified in preview).
+- [x] Remove intro Skip; desktop opens to Home and first Profile click shows QR + number login box; keypad TV-only (verified at 1280px).
+- [x] TV/desktop: Cast removed, Categories stays but does nothing on click; Search shows video cards, saves recent searches and shows Trending only before the first search (verified at 1280px).
+- [x] 30 languages in Settings and profile language picker; TV Settings & Help as a left-side menu with options opening on the right.
+- [x] Highlight Privacy Policy & Terms of Use, bigger 'universe of entertainment', TV rail item hold-only, TV Settings & Help pinned left, TV/desktop full-screen player with title on Up/Down (verified at 1280px).
+
+## Migration into this project
+- [x] App code, tests, images and sample videos moved; database rebuilt in Lovable Cloud.
+- [ ] Import existing data (shows, seasons, episodes, live channels, clips, phone users, profiles) — waiting for exports.
+- [ ] Recreate admin login and grant admin role — waiting for admin to sign up.
+- [x] New catalog upload key saved; wrong keys are rejected.

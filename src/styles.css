@@ -1,0 +1,834 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --color-nova-black: #0e1116;
+  --color-nova-dark: #151922;
+  --color-nova-card: #151922;
+  --color-nova-red: #7c3aed;
+  --color-nova-accent: #ec4899;
+  --color-nova-logo: #e50914;
+  --color-nova-text: #ffffff;
+  --color-nova-muted: #ffffff;
+  --color-nova-line: oklch(1 0 0 / 12%);
+  --color-nova-overlay: oklch(0 0 0 / 80%);
+  --color-nova-nav: #0e1116;
+  --color-nova-nav-line: oklch(1 0 0 / 10%);
+  --color-nova-nav-muted: #ffffff;
+  --color-nova-video: oklch(0 0 0);
+  --color-nova-rating: oklch(0.84 0.16 85);
+  --color-nova-heart: oklch(0.68 0.23 16);
+  --color-nova-dislike: oklch(0.75 0.17 55);
+  --color-nova-ai-pink: oklch(0.8 0.16 335);
+  --color-nova-ai-surface: oklch(0.27 0.04 285);
+  --nova-premium-gradient: linear-gradient(120deg, #7c3aed, #ec4899);
+  --nova-ai-gradient: linear-gradient(110deg, var(--color-nova-accent), var(--color-nova-ai-pink), var(--color-nova-text), var(--color-nova-accent));
+
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-script: "Dancing Script", cursive;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-nova-black);
+    color: var(--color-nova-text);
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--font-sans);
+  }
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  button, a, [role="button"], input, select, textarea {
+    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease,
+      transform 150ms cubic-bezier(0.22, 1, 0.36, 1), opacity 160ms ease;
+  }
+  button:active, [role="button"]:active { transform: scale(0.97); }
+  /* No bright ring or tap flash when something is clicked or tapped. Keyboard
+     and TV-remote users get a hardware-accelerated bright focus ring. */
+  html { -webkit-tap-highlight-color: transparent; }
+  :focus:not(:focus-visible) { outline: none; box-shadow: none; }
+  :focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.85);
+    outline-offset: 2px;
+  }
+  /* Text fields never draw the bright focus ring — components that want a focus
+     style set their own (utility-layer ring wins over this base rule). */
+  input:focus,
+  input:focus-visible,
+  input:active,
+  textarea:focus,
+  textarea:focus-visible,
+  select:focus,
+  select:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+/* Hardware-accelerated TV D-Pad focus ring & 60 FPS row scroll surface */
+@utility tv-focusable {
+  will-change: transform;
+  transform: translateZ(0);
+  transition: transform 150ms cubic-bezier(0.22, 1, 0.36, 1), border-color 150ms ease,
+    box-shadow 150ms ease;
+  &:focus-visible {
+    transform: scale(1.06);
+    border-color: #ffffff;
+    outline: 2.5px solid #ffffff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.48), 0 12px 24px -8px rgba(0, 0, 0, 0.78);
+    z-index: 20;
+  }
+}
+
+@utility tv-scroll-row {
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style;
+}
+
+@utility nova-tv-surface {
+  background-color: rgba(15, 18, 25, 0.92);
+}
+
+/* Cinematic startup intro */
+@keyframes nova-intro-logo {
+  0% { opacity: 0; transform: scale(0.92); filter: blur(8px); }
+  60% { opacity: 1; transform: scale(1); filter: blur(0); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes nova-intro-sweep {
+  0% { transform: translateX(-160%) skewX(-20deg); }
+  100% { transform: translateX(260%) skewX(-20deg); }
+}
+@keyframes nova-intro-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes nova-intro-out { to { opacity: 0; visibility: hidden; } }
+
+@utility nova-intro {
+  background: radial-gradient(ellipse at center,
+    color-mix(in oklab, var(--color-nova-red) 18%, transparent) 0%,
+    color-mix(in oklab, var(--color-nova-accent) 6%, transparent) 35%,
+    var(--color-nova-black) 70%), var(--color-nova-black);
+  animation: nova-intro-out 600ms ease 3000ms forwards;
+}
+@utility nova-intro-logo {
+  animation: nova-intro-logo 1400ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  filter: drop-shadow(0 0 24px color-mix(in oklab, var(--color-nova-red) 60%, transparent))
+    drop-shadow(0 0 48px color-mix(in oklab, var(--color-nova-accent) 30%, transparent));
+}
+@utility nova-intro-sweep {
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--color-nova-text) 35%, transparent), transparent);
+  animation: nova-intro-sweep 1300ms ease-in-out 700ms both;
+  mix-blend-mode: screen;
+}
+@utility nova-intro-tagline {
+  animation: nova-intro-fade 900ms ease 1500ms both;
+}
+
+/* Pill background: pink + purple + soft black, no side glow */
+@utility nova-pill {
+  background-color: #12151c;
+  background-image:
+    linear-gradient(
+      100deg,
+      color-mix(in oklab, var(--color-nova-accent) 34%, transparent) 0%,
+      color-mix(in oklab, var(--color-nova-red) 34%, transparent) 52%,
+      color-mix(in oklab, var(--color-nova-black) 82%, transparent) 100%
+    );
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08);
+}
+
+/* Prominent pill: full-strength pink into purple into soft black */
+@utility nova-pill-solid {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-nova-accent) 0%,
+    var(--color-nova-red) 55%,
+    #171b24 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nova-intro, .nova-intro-logo, .nova-intro-sweep, .nova-intro-tagline { animation-duration: 1ms; animation-delay: 0ms; }
+}
+
+/* Premium animated profile ring */
+@keyframes nova-profile-spin { to { transform: rotate(360deg); } }
+@utility nova-profile-ring {
+  position: relative;
+  border-radius: 9999px;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    border-radius: 9999px;
+    padding: 4px;
+    background: conic-gradient(from 0deg, var(--color-nova-red), var(--color-nova-accent), #f0abfc, #fbbf24, var(--color-nova-red));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: nova-profile-spin 14s linear infinite;
+    filter: blur(3px) drop-shadow(0 0 10px color-mix(in oklab, var(--color-nova-accent) 60%, transparent));
+    opacity: 0.9;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nova-profile-ring::before { animation: none; }
+}
+
+/* Browse Categories sheet: slides up from the bottom edge */
+@utility nova-sheet {
+  will-change: transform;
+}
+@utility nova-sheet-closed {
+  transform: translateY(100%);
+}
+@utility nova-sheet-open {
+  transform: translateY(0);
+  transition: transform 480ms cubic-bezier(0.33, 0.1, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nova-sheet-open { transition: none; }
+}
+
+/* NOVA AI chat orb */
+@keyframes nova-ai-spin { to { transform: rotate(360deg); } }
+@keyframes nova-ai-breathe {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 12px color-mix(in oklab, var(--color-nova-red) 45%, transparent); }
+  50% { transform: scale(1.08); box-shadow: 0 0 22px color-mix(in oklab, var(--color-nova-accent) 60%, transparent); }
+}
+@keyframes nova-ai-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes nova-ai-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@utility nova-ai-orb {
+  position: relative;
+  isolation: isolate;
+  background: var(--color-nova-black);
+  animation: nova-ai-breathe 2.4s ease-in-out infinite;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    border-radius: 9999px;
+    background: conic-gradient(from 0deg, var(--color-nova-red), var(--color-nova-accent), var(--color-nova-red));
+    animation: nova-ai-spin 3s linear infinite;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: -1;
+    border-radius: 9999px;
+    background: var(--color-nova-black);
+  }
+}
+@utility nova-ai-float { animation: nova-ai-float 3s ease-in-out infinite; }
+@utility nova-ai-panel { animation: nova-ai-rise 260ms ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  .nova-ai-orb, .nova-ai-orb::before, .nova-ai-float, .nova-ai-panel { animation: none; }
+}
+
+/* Premium solid bottom navigation bar */
+@utility nova-nav-bar {
+  background: var(--color-nova-nav);
+  border-top: 1px solid var(--color-nova-nav-line);
+  border-radius: 22px 22px 0 0;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -18px 44px -30px oklch(0 0 0 / 90%);
+  overflow: hidden;
+}
+
+@utility nova-player-shade {
+  background: linear-gradient(to bottom, var(--color-nova-overlay), transparent 40%, transparent 60%, var(--color-nova-overlay));
+}
+
+@utility nova-player-range {
+  appearance: none;
+  cursor: pointer;
+  background: transparent;
+  &::-webkit-slider-runnable-track {
+    height: 4px; border-radius: 9999px;
+    background: linear-gradient(to right, var(--color-nova-accent) var(--nova-progress, 0%), color-mix(in oklab, var(--color-nova-text) 28%, transparent) var(--nova-progress, 0%));
+    transition: height 150ms;
+  }
+  &:hover::-webkit-slider-runnable-track { height: 6px; }
+  &::-webkit-slider-thumb {
+    appearance: none; width: 14px; height: 14px; margin-top: -5px; border-radius: 9999px;
+    background: var(--color-nova-text); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-nova-accent) 35%, transparent);
+    transition: transform 150ms;
+  }
+  &:hover::-webkit-slider-thumb { transform: scale(1.2); }
+  &::-moz-range-track { height: 4px; border-radius: 9999px; background: color-mix(in oklab, var(--color-nova-text) 28%, transparent); }
+  &::-moz-range-progress { height: 4px; border-radius: 9999px; background: var(--color-nova-accent); }
+  &::-moz-range-thumb { width: 14px; height: 14px; border: 0; border-radius: 9999px; background: var(--color-nova-text); }
+}
+
+.nova-video-stage:fullscreen {
+  width: 100vw;
+  height: 100dvh;
+  max-height: none;
+}
+
+@keyframes nova-ai-gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes nova-ai-caret {
+  0%, 45% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes nova-heart-pop {
+  0% { transform: scale(0.75); }
+  45% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+@utility nova-ai-gradient-text {
+  background-image: var(--nova-ai-gradient);
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: nova-ai-gradient-flow 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--color-nova-accent) 30%, transparent));
+}
+@utility nova-ai-prompt-glow {
+  position: relative;
+  border-radius: 12px;
+  padding: 1px;
+  background-image: var(--nova-ai-gradient);
+  background-size: 250% 100%;
+  animation: nova-ai-gradient-flow 5s ease-in-out infinite;
+  box-shadow: 0 0 16px color-mix(in oklab, var(--color-nova-accent) 12%, transparent);
+}
+.nova-ai-prompt-glow [data-slot="input-group"] {
+  border: 0;
+  border-radius: 11px;
+  background: var(--color-nova-black);
+}
+@utility nova-ai-caret {
+  animation: nova-ai-caret 1s step-end infinite;
+}
+@utility nova-heart-pop {
+  animation: nova-heart-pop 350ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nova-ai-gradient-text, .nova-ai-prompt-glow, .nova-ai-caret, .nova-heart-pop { animation: none; }
+}
+
+
+
+
+html[data-nova-chat="open"] .nova-bottom-nav { visibility: hidden !important; pointer-events: none !important; }
+
+/* Geometric "N" startup intro */
+@keyframes ni-draw { to { stroke-dashoffset: 0; } }
+@keyframes ni-fill { to { fill-opacity: 1; stroke-opacity: 0.35; } }
+@keyframes ni-mark-in {
+  0% { opacity: 0; transform: scale(0.86); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes ni-bloom {
+  0% { filter: drop-shadow(0 0 0 transparent); }
+  60% { filter: drop-shadow(0 0 28px color-mix(in oklab, var(--color-nova-red) 75%, transparent)) drop-shadow(0 0 60px color-mix(in oklab, var(--color-nova-accent) 40%, transparent)); }
+  100% { filter: drop-shadow(0 0 16px color-mix(in oklab, var(--color-nova-red) 45%, transparent)) drop-shadow(0 0 40px color-mix(in oklab, var(--color-nova-accent) 22%, transparent)); }
+}
+@keyframes ni-sweep {
+  0% { transform: translateX(-140%) skewX(-22deg); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(160%) skewX(-22deg); opacity: 0; }
+}
+@keyframes ni-word {
+  0% { opacity: 0; letter-spacing: 0.9em; filter: blur(6px); }
+  100% { opacity: 1; letter-spacing: 0.32em; filter: blur(0); }
+}
+@keyframes ni-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes ni-rule { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: scaleX(1); } }
+@keyframes ni-glow {
+  0% { opacity: 0; transform: scale(0.7); }
+  50% { opacity: 1; }
+  100% { opacity: 0.75; transform: scale(1); }
+}
+
+.ni-root { transition: opacity 450ms ease, transform 450ms ease; }
+.ni-root.ni-leaving { opacity: 0; transform: scale(1.04); }
+.ni-glow {
+  background: radial-gradient(ellipse 55% 40% at 50% 45%,
+    color-mix(in oklab, var(--color-nova-red) 26%, transparent) 0%,
+    color-mix(in oklab, var(--color-nova-accent) 9%, transparent) 45%,
+    transparent 75%);
+  animation: ni-glow 1800ms ease-out 600ms both;
+}
+.ni-floor {
+  background: linear-gradient(to top, color-mix(in oklab, var(--color-nova-red) 8%, transparent), transparent);
+}
+.ni-mark { animation: ni-mark-in 1200ms cubic-bezier(0.2, 0.8, 0.2, 1) both, ni-bloom 1600ms ease 1100ms both; }
+.ni-shape {
+  stroke: url(#ni-line);
+  stroke-width: 0.8;
+  stroke-linejoin: miter;
+  fill-opacity: 0;
+  animation: ni-draw 800ms cubic-bezier(0.65, 0, 0.35, 1) forwards, ni-fill 600ms ease forwards;
+}
+.ni-shape { stroke-dasharray: 260; stroke-dashoffset: 260; }
+.ni-d1 { animation-delay: 100ms, 1000ms; }
+.ni-d2 { animation-delay: 250ms, 1080ms; }
+.ni-d3 { animation-delay: 400ms, 1160ms; }
+.ni-d4 { animation-delay: 500ms, 1240ms; }
+.ni-sweep {
+  background: linear-gradient(90deg, transparent 0%, rgb(255 255 255 / 0.55) 50%, transparent 100%);
+  width: 45%;
+  mix-blend-mode: overlay;
+  animation: ni-sweep 900ms ease-in-out 1500ms both;
+}
+@keyframes ni-open-word { from { width: 0; } to { width: 2.35em; } }
+@keyframes ni-emerge { from { opacity: 0; transform: translateX(-100%); } to { opacity: 1; transform: translateX(0); } }
+.ni-letters-window { font-size: 3.75rem; width: 2.35em; margin-left: -0.12em; animation: ni-open-word 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) 1700ms both; }
+.ni-letters { white-space: nowrap; letter-spacing: 0; animation: ni-emerge 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) 1700ms both; }
+@media (min-width: 640px) { .ni-letters-window { font-size: 4.5rem; } }
+.ni-rule { animation: ni-rule 700ms ease 2300ms both; }
+.ni-tag { animation: ni-rise 700ms ease 2500ms both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ni-root *, .ni-shape { animation-duration: 1ms !important; animation-delay: 0ms !important; }
+}
+
+/* Desktop login box */
+@keyframes nova-login-pop {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+@utility nova-login-pop {
+  animation: nova-login-pop 380ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@utility nova-premium-text {
+  background-image: var(--nova-premium-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Clime switcher boxes (Clip / Meme): plain NOVA-coloured boxes */
+@utility nova-clime-clip {
+  background-color: var(--color-nova-red);
+}
+@utility nova-clime-meme {
+  background-color: var(--color-nova-red);
+}
+@utility nova-clime-active {
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 0.65), 0 0 18px 2px rgb(255 255 255 / 0.16);
+}
+
+/* TV Profile Selection: flowing purple-pink light waves & glass pill */
+@keyframes nova-tv-wave-flow {
+  0%, 100% {
+    transform: translate3d(-6%, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(6%, -3%, 0) scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+@keyframes nova-tv-wave-ribbon {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes nova-tv-enter-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+@utility nova-tv-wave-top {
+  background: radial-gradient(
+    65% 100% at 50% 0%,
+    rgb(114 0 255 / 0.34) 0%,
+    rgb(160 32 240 / 0.16) 42%,
+    rgb(255 0 184 / 0.1) 68%,
+    transparent 90%
+  );
+  will-change: transform;
+  animation: nova-tv-wave-flow 12s ease-in-out infinite;
+}
+
+@utility nova-tv-wave-bottom {
+  background: radial-gradient(
+    70% 100% at 50% 100%,
+    rgb(255 0 184 / 0.3) 0%,
+    rgb(160 32 240 / 0.18) 42%,
+    rgb(114 0 255 / 0.12) 68%,
+    transparent 92%
+  );
+  will-change: transform;
+  animation: nova-tv-wave-flow 14s ease-in-out infinite reverse;
+}
+
+@utility nova-tv-wave-edge-top {
+  background: linear-gradient(90deg, transparent 5%, #7200ff 28%, #a020f0 50%, #ff00b8 74%, transparent 95%);
+  background-size: 200% 100%;
+  animation: nova-tv-wave-ribbon 8s ease-in-out infinite;
+}
+
+@utility nova-tv-wave-edge-bottom {
+  background: linear-gradient(90deg, transparent 5%, #ff00b8 28%, #a020f0 52%, #7200ff 76%, transparent 95%);
+  background-size: 200% 100%;
+  animation: nova-tv-wave-ribbon 10s ease-in-out infinite reverse;
+}
+
+@utility nova-tv-pill-border {
+  background: linear-gradient(120deg, #7200ff, #a020f0, #ff00b8, #7200ff);
+  background-size: 220% 220%;
+  animation: nova-tv-wave-ribbon 6s ease-in-out infinite;
+  box-shadow:
+    0 0 20px rgb(114 0 255 / 0.4),
+    0 0 32px rgb(255 0 184 / 0.22);
+}
+
+@utility nova-tv-pill-glass {
+  background-color: rgba(15, 18, 25, 0.92);
+  background-image: linear-gradient(135deg, rgba(28, 20, 48, 0.92), rgba(15, 18, 25, 0.94));
+}
+
+@utility nova-tv-add-btn {
+  background: radial-gradient(circle at 30% 30%, rgb(160 32 240 / 0.22), rgb(11 9 18 / 0.85));
+  box-shadow:
+    0 0 22px rgb(114 0 255 / 0.35),
+    inset 0 0 16px rgb(255 0 184 / 0.16);
+}
+
+@utility nova-tv-entering {
+  animation: nova-tv-enter-fade 260ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes nova-smart-expand {
+  0%, 10%, 92%, 100% {
+    max-width: 2.5rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  28%, 78% {
+    max-width: 13.5rem;
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+}
+
+@keyframes nova-smart-text-window {
+  0%, 12%, 88%, 100% {
+    max-width: 0;
+    opacity: 0;
+  }
+  28%, 76% {
+    max-width: 11rem;
+    opacity: 1;
+  }
+}
+
+@keyframes nova-smart-word-1-loop {
+  0%, 14%, 84%, 100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  28%, 74% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes nova-smart-word-2-loop {
+  0%, 20%, 80%, 100% {
+    opacity: 0;
+    transform: translateX(-115%);
+  }
+  36%, 72% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes nova-eq-bar {
+  0%, 100% {
+    transform: scaleY(0.28);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@utility nova-eq-bar {
+  transform-origin: bottom;
+  animation: nova-eq-bar 850ms ease-in-out infinite;
+}
+
+@utility nova-smart-pill {
+  position: relative;
+  border-radius: 9999px;
+  border: 1px solid rgb(192 132 252 / 0.48);
+  background-color: rgba(15, 18, 25, 0.92);
+  background-image: linear-gradient(135deg, rgba(114, 0, 255, 0.34) 0%, rgba(236, 72, 153, 0.24) 100%);
+  box-shadow:
+    0 4px 14px rgb(0 0 0 / 0.28),
+    inset 0 1px 0 rgb(255 255 255 / 0.22);
+}
+
+@utility nova-smart-pill-inner {
+  overflow: hidden;
+  animation: nova-smart-expand 5.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@utility nova-smart-text-window {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: nova-smart-text-window 5.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@utility nova-smart-word-1 {
+  display: inline-block;
+  animation: nova-smart-word-1-loop 5.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@utility nova-smart-word-2 {
+  display: inline-block;
+  animation: nova-smart-word-2-loop 5.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nova-tv-wave-top,
+  .nova-tv-wave-bottom,
+  .nova-tv-wave-edge-top,
+  .nova-tv-wave-edge-bottom,
+  .nova-tv-pill-border,
+  .nova-tv-entering,
+  .nova-eq-bar,
+  .nova-smart-pill,
+  .nova-smart-pill-inner,
+  .nova-smart-text-window,
+  .nova-smart-word-1,
+  .nova-smart-word-2,
+  .nova-poster-drift {
+    animation: none;
+  }
+}
+
+/* Video player settings: pink, black, and purple surface */
+@utility nova-video-settings-bg {
+  background-color: #08090d;
+  background-image:
+    radial-gradient(circle at 12% 10%, rgb(236 72 153 / 0.28) 0%, transparent 48%),
+    radial-gradient(circle at 88% 88%, rgb(124 58 237 / 0.34) 0%, transparent 52%),
+    linear-gradient(155deg, #2b0b29 0%, #140b24 38%, #08090d 72%, #190a2d 100%);
+}
+
+/* Neon Select Language overlay above timeline */
+@utility nova-lang-modal-bg {
+  background-color: #040208;
+  background-image:
+    radial-gradient(ellipse 52% 44% at 4% 4%, rgb(114 0 255 / 0.44) 0%, transparent 66%),
+    radial-gradient(ellipse 48% 42% at 96% 4%, rgb(255 0 184 / 0.32) 0%, transparent 64%),
+    radial-gradient(ellipse 48% 40% at 6% 98%, rgb(255 0 184 / 0.3) 0%, transparent 64%),
+    radial-gradient(ellipse 52% 44% at 95% 96%, rgb(114 0 255 / 0.42) 0%, transparent 68%),
+    linear-gradient(180deg, #070310 0%, #030206 50%, #070310 100%);
+}
+
+@utility nova-lang-pill-active {
+  background: linear-gradient(95deg, #7200ff 0%, #a020f0 52%, #ec4899 100%);
+  border: 1.5px solid rgb(244 114 182 / 0.9);
+  box-shadow:
+    0 0 24px rgb(160 32 240 / 0.72),
+    0 0 40px rgb(255 0 184 / 0.38),
+    inset 0 1px 1px rgb(255 255 255 / 0.45);
+}
+
+@utility nova-lang-pill-idle {
+  background: linear-gradient(180deg, rgb(26 14 44 / 0.72) 0%, rgb(8 5 14 / 0.94) 100%);
+  border: 1.5px solid rgb(168 85 247 / 0.65);
+  box-shadow:
+    0 0 16px rgb(160 32 240 / 0.25),
+    inset 0 0 14px rgb(236 72 153 / 0.12);
+}
+
+@keyframes nova-poster-drift {
+  0% {
+    transform: scale(1.14) translate3d(-2.5%, -1.5%, 0);
+  }
+  50% {
+    transform: scale(1.2) translate3d(2.5%, 1.2%, 0);
+  }
+  100% {
+    transform: scale(1.15) translate3d(-1.5%, 2%, 0);
+  }
+}
+
+@utility nova-poster-drift {
+  will-change: transform;
+  animation: nova-poster-drift 34s ease-in-out infinite alternate;
+}
+
+/* Four-color combined black, deep violet, purple, and pink ambient backdrop */
+@utility nova-onboarding-fourcolor {
+  background-color: #050509;
+  background-image:
+    radial-gradient(ellipse 68% 58% at 14% 18%, rgb(114 0 255 / 0.48) 0%, transparent 65%),
+    radial-gradient(ellipse 64% 56% at 86% 24%, rgb(236 72 153 / 0.4) 0%, transparent 64%),
+    radial-gradient(ellipse 72% 58% at 78% 84%, rgb(88 28 135 / 0.5) 0%, transparent 68%),
+    radial-gradient(ellipse 66% 54% at 18% 86%, rgb(255 0 184 / 0.28) 0%, transparent 66%),
+    linear-gradient(135deg, #040408 0%, #1d0936 36%, #52136b 68%, #07050d 100%);
+}
+

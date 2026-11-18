@@ -1,0 +1,36 @@
+// Languages offered everywhere NOVA asks for one (Settings, profile setup).
+// 22 scheduled Indian languages plus English and popular global languages.
+export type AppLanguage = { id: string; script: string };
+
+export const APP_LANGUAGES: AppLanguage[] = [
+  { id: 'English', script: 'English' },
+  { id: 'Hindi', script: 'हिन्दी' },
+  { id: 'Bengali', script: 'বাংলা' },
+  { id: 'Telugu', script: 'తెలుగు' },
+  { id: 'Marathi', script: 'मराठी' },
+  { id: 'Tamil', script: 'தமிழ்' },
+  { id: 'Urdu', script: 'اردو' },
+  { id: 'Gujarati', script: 'ગુજરાતી' },
+  { id: 'Kannada', script: 'ಕನ್ನಡ' },
+  { id: 'Malayalam', script: 'മലയാളം' },
+  { id: 'Odia', script: 'ଓଡ଼ିଆ' },
+  { id: 'Punjabi', script: 'ਪੰਜਾਬੀ' },
+  { id: 'Assamese', script: 'অসমীয়া' },
+  { id: 'Maithili', script: 'मैथिली' },
+  { id: 'Santali', script: 'ᱥᱟᱱᱛᱟᱲᱤ' },
+  { id: 'Kashmiri', script: 'کٲشُر' },
+  { id: 'Nepali', script: 'नेपाली' },
+  { id: 'Sindhi', script: 'سنڌي' },
+  { id: 'Konkani', script: 'कोंकणी' },
+  { id: 'Dogri', script: 'डोगरी' },
+  { id: 'Manipuri', script: 'মৈতৈলোন্' },
+  { id: 'Bodo', script: 'बड़ो' },
+  { id: 'Sanskrit', script: 'संस्कृतम्' },
+  { id: 'Bhojpuri', script: 'भोजपुरी' },
+  { id: 'Korean', script: '한국어' },
+  { id: 'Japanese', script: '日本語' },
+  { id: 'Spanish', script: 'Español' },
+  { id: 'French', script: 'Français' },
+  { id: 'Arabic', script: 'العربية' },
+  { id: 'Chinese', script: '中文' },
+];

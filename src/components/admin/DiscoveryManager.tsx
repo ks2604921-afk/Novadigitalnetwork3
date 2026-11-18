@@ -1,0 +1,23 @@
+import { useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useServerFn } from '@tanstack/react-start';
+import { Pencil, Trash2, Plus } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { listDiscoveryAdmin, saveDiscovery, deleteDiscovery } from '@/lib/discovery.functions';
+import { discoverySchema } from '@/lib/discovery-rules';
+import type { z } from 'zod';
+import { toast } from 'sonner';
+type Form = z.infer<typeof discoverySchema>;
+export default function DiscoveryManager({ kind }: { kind: Form['kind'] }) {
+  const qc = useQueryClient(), list = useServerFn(listDiscoveryAdmin), save = useServerFn(saveDiscovery), remove = useServerFn(deleteDiscovery);
+  const [form, setForm] = useState<Form | null>(null);
+  const { data, isLoading, error } = useQuery({ queryKey: ['admin', 'discovery'], queryFn: () => list() });
+  const saved = useMutation({ mutationFn: (value: Form) => save({ data: discoverySchema.parse(value) }), onSuccess: () => { setForm(null); qc.invalidateQueries({ queryKey: ['admin', 'discovery'] }); qc.invalidateQueries({ queryKey: ['nova', 'discovery'] }); toast.success('Content saved'); }, onError: error => toast.error(error.message) });
+  const deleted = useMutation({ mutationFn: (id: string) => remove({ data: { id } }), onSuccess: () => qc.invalidateQueries({ queryKey: ['admin', 'discovery'] }), onError: error => toast.error(error.message) });
+  return <div className="space-y-4"><div className="flex justify-end"><Button onClick={() => setForm({ kind, title: '', description: '', image_url: '', video_url: '', release_at: null, is_published: false })}><Plus />Add {kind === 'clip' ? 'clip' : 'upcoming title'}</Button></div>{isLoading && <p>Loading…</p>}{error && <p role="alert">{error.message}</p>}{data?.filter(item => item.kind === kind).map(item => <article key={item.id} className="flex items-center gap-3 rounded-lg border border-border p-3"><img src={item.image_url} alt="" className="h-16 w-24 rounded object-cover" /><div className="min-w-0 flex-1"><p className="truncate font-semibold">{item.title}</p><p className="text-xs text-muted-foreground">{item.is_published ? 'Published' : 'Draft'}</p></div><Button variant="outline" size="icon" aria-label={`Edit ${item.title}`} onClick={() => setForm(discoverySchema.parse(item))}><Pencil /></Button><Button variant="destructive" size="icon" disabled={deleted.isPending} aria-label={`Delete ${item.title}`} onClick={() => { if (confirm(`Delete ${item.title}?`)) deleted.mutate(item.id); }}><Trash2 /></Button></article>)}<Dialog open={!!form} onOpenChange={open => { if (!open) setForm(null); }}><DialogContent className="max-h-[90dvh] overflow-y-auto"><DialogHeader><DialogTitle>{form?.id ? 'Edit' : 'Add'} {kind === 'clip' ? 'clip' : 'upcoming title'}</DialogTitle></DialogHeader>{form && <form className="space-y-4" onSubmit={event => { event.preventDefault(); saved.mutate(form); }}>{(['title', 'image_url', 'video_url'] as const).map(field => <div key={field}><Label htmlFor={`discovery-${field}`}>{field === 'title' ? 'Title' : field === 'image_url' ? 'Artwork URL' : 'Video / trailer URL'}</Label><Input id={`discovery-${field}`} required type={field === 'title' ? 'text' : 'url'} value={form[field]} onChange={event => setForm({ ...form, [field]: event.target.value })} /></div>)}<Label htmlFor="discovery-description">Description</Label><Textarea id="discovery-description" value={form.description} onChange={event => setForm({ ...form, description: event.target.value })} />{kind === 'upcoming' && <div><Label htmlFor="discovery-release">Release date</Label><Input id="discovery-release" type="datetime-local" value={form.release_at ? new Date(new Date(form.release_at).getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16) : ''} onChange={event => setForm({ ...form, release_at: event.target.value ? new Date(event.target.value).toISOString() : null })} /></div>}<div className="flex items-center justify-between"><Label htmlFor="discovery-published">Published</Label><Switch id="discovery-published" checked={form.is_published} onCheckedChange={is_published => setForm({ ...form, is_published })} /></div><Button type="submit" disabled={saved.isPending}>{saved.isPending ? 'Saving…' : 'Save'}</Button></form>}</DialogContent></Dialog></div>;
+}

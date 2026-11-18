@@ -1,0 +1,128 @@
+[
+ {
+  "capability": "code",
+  "source": "NOVA streaming app (TanStack Start + Lovable Cloud archive)",
+  "outcome": "migrated",
+  "status": "verified",
+  "next_action": null
+ },
+ {
+  "capability": "tests",
+  "source": "14 test files, 85 tests",
+  "outcome": "migrated",
+  "status": "verified",
+  "next_action": null
+ },
+ {
+  "capability": "schema",
+  "source": "18 tables, app_role enum, has_role (rebuilt from generated types; no migration files in archive)",
+  "outcome": "migrated to Lovable Cloud",
+  "status": "verified",
+  "next_action": null
+ },
+ {
+  "capability": "records",
+  "source": "previous Cloud database (shows, seasons, episodes, live_channels, discovery_items, nova_announcements, users, watching_profiles)",
+  "outcome": "migrate",
+  "status": "pending",
+  "next_action": "User to supply CSV/JSON exports"
+ },
+ {
+  "capability": "auth_phone_users",
+  "source": "custom phone OTP users/sessions tables",
+  "outcome": "migrated",
+  "status": "verified",
+  "next_action": "Import users + watching_profiles exports; OTP sign-in needs no password. Old sessions do not carry over."
+ },
+ {
+  "capability": "auth_admin",
+  "source": "Cloud email/password + user_roles admin",
+  "outcome": "migrated",
+  "status": "pending",
+  "next_action": "Admin creates account at /auth, confirms email, then grant admin role"
+ },
+ {
+  "capability": "authorization",
+  "source": "has_role RLS + server re-checks",
+  "outcome": "migrated",
+  "status": "verified",
+  "next_action": null
+ },
+ {
+  "capability": "ai",
+  "source": "Lovable AI Gateway (chat, recommendations, episode descriptions)",
+  "outcome": "preserved",
+  "status": "verified",
+  "next_action": null
+ },
+ {
+  "capability": "ingest_endpoint",
+  "source": "/api/public/ingest with INGEST_API_KEY",
+  "outcome": "preserved; new key saved",
+  "status": "partial",
+  "next_action": "Wrong key rejected (401) verified; external uploader must switch to the new URL and new key"
+ },
+ {
+  "capability": "web_push",
+  "source": "VAPID keys in nova_push_config; devices in nova_push_devices",
+  "outcome": "preserved",
+  "status": "accepted",
+  "next_action": "Admin re-enables push; devices re-register (old keys not portable)"
+ },
+ {
+  "capability": "sms",
+  "source": "optional Twilio connector; demo shows OTP on screen",
+  "outcome": "preserved",
+  "status": "accepted",
+  "next_action": "Connect Twilio before real launch"
+ },
+ {
+  "capability": "video_storage",
+  "source": "provider-independent adapter, no provider implemented",
+  "outcome": "preserved",
+  "status": "accepted",
+  "next_action": "Choose provider later"
+ },
+ {
+  "capability": "uploaded_files",
+  "source": "bundled images + 3 sample videos",
+  "outcome": "migrated (videos re-uploaded to this project)",
+  "status": "verified",
+  "next_action": null
+ },
+ {
+  "capability": "design_references",
+  "source": "public/assets/aistudio screenshots + HTML (unreferenced)",
+  "outcome": "not copied",
+  "status": "accepted",
+  "next_action": null
+ },
+ {
+  "capability": "cinestream_cms",
+  "source": "external CMS fetch, unwired",
+  "outcome": "preserved",
+  "status": "accepted",
+  "next_action": null
+ },
+ {
+  "capability": "schedules",
+  "source": "none",
+  "outcome": "none",
+  "status": "accepted",
+  "next_action": null
+ },
+ {
+  "capability": "payments",
+  "source": "consent UI only, no provider",
+  "outcome": "unchanged",
+  "status": "accepted",
+  "next_action": null
+ },
+ {
+  "capability": "verification",
+  "source": "typecheck, 85 tests, home + /auth render, phone OTP + profile CRUD, AI chat, anon RLS",
+  "outcome": "done",
+  "status": "verified",
+  "next_action": null
+ }
+]
